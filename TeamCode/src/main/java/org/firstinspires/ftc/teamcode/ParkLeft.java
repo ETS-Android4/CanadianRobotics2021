@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name="AutoTest", group="Autonomous")
-public class AutonomousTest extends LinearOpMode {
+@Autonomous(name="ParkLeft", group="Autonomous")
+public class ParkLeft extends LinearOpMode {
     MechanumHardware hwm;
     @Override
     public void runOpMode() throws InterruptedException {
@@ -14,9 +14,8 @@ public class AutonomousTest extends LinearOpMode {
         hwm.arm2.setPower(0);
         hwm.tel = telemetry;
         waitForStart();
-        //hwm.encoderDrive(20, 1, 10);
-        hwm.imuTurn(90, 10000);
-        hwm.imuTurn(-90, 10000);
-        //hwm.encoderDrive(50, 1, 10);
+        hwm.encoderDrive(20, 1, 4000);
+        hwm.imuTurn(-90);
+        hwm.encoderDrive(70, 1, 5000);
     }
 }

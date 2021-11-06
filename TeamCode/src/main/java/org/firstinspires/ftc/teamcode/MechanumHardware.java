@@ -193,16 +193,16 @@ public class MechanumHardware {
         brake();
     }
 
-    public void imuTurn(double target, int timeout) {
+    public void imuTurn(double target) {
         setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         double error = getError(target);
         double TOLERANCE = 0.5;
-        if (error > 0) setTurnPower(-0.5f);
-        else setTurnPower(0.5f);
-        while (180 - Math.abs(error) > TOLERANCE) {
-
+        while (Math.abs(error) > TOLERANCE) {
             error = getError(target);
+            setTurnPower((float) (error / -45.f));
             tel.addData("error", 180 - Math.abs(error));
+            tel.addData("angle", getAngle());
+            tel.addData("test: ", 180 - Math.abs(error) > TOLERANCE);
             tel.update();
         }
         brake();

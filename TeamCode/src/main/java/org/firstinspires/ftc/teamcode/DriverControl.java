@@ -3,16 +3,21 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Driver code", group="Linear Opmode")
 public class DriverControl extends OpMode {
 
     MechanumHardware hw;
+    DcMotor spinMotor;
+    Servo claw;
 
     @Override
     public void init() {
         hw = new MechanumHardware(hardwareMap);
         hw.init();
+        spinMotor = hardwareMap.get(DcMotor.class, "spinMotor");
+        claw = hardwareMap.get(Servo.class, "claw");
     }
 
     @Override
@@ -36,5 +41,11 @@ public class DriverControl extends OpMode {
 
         if (gamepad1.left_trigger != 0) hw.moveArm2(-1);
         else if (gamepad1.right_trigger != 0) hw.moveArm2(1);
+
+        if (gamepad1.a) claw.setPosition(0);
+        if (gamepad1.b) claw.setPosition(1);
+        spinMotor.setPower(0);
+        if (gamepad1.x) spinMotor.setPower(1);
+        if (gamepad1.y) spinMotor.setPower(-1);
     }
 }

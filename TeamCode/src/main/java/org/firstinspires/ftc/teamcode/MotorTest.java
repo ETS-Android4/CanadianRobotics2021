@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name="Motor Test", group="Linear Opmode")
 public class MotorTest extends OpMode {
@@ -10,6 +12,7 @@ public class MotorTest extends OpMode {
     public void init() {
         hwm = new MechanumHardware(hardwareMap);
         hwm.init();
+        hwm.backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
     }
 
     @Override

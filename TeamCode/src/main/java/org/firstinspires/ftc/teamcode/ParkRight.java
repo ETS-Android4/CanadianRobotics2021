@@ -16,6 +16,6 @@ public class ParkRight extends LinearOpMode {
         waitForStart();
         hwm.encoderDrive(20, 1, 4000);
         hwm.imuTurn(90);
-        hwm.encoderDrive(70, 1, 5000);
+        hwm.encoderDrive(50, 1, 5000);
     }
 }

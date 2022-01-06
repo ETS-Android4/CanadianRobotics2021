@@ -1,11 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.foundation.MechanumHardware;
+
 @TeleOp(name="Driver code", group="Linear Opmode")
+@Disabled
 public class DriverControl extends OpMode {
 
     MechanumHardware hw;
@@ -59,5 +63,8 @@ public class DriverControl extends OpMode {
         spinMotor.setPower(0);
         if (gamepad1.x) spinMotor.setPower(1);
         if (gamepad1.y) spinMotor.setPower(-1);
+
+        telemetry.addLine("arm " + hw.arm2Target);
+        telemetry.update();
     }
 }
